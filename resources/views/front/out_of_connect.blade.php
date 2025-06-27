@@ -16,7 +16,7 @@
     </div>
     <div class="flex items-center w-[380px] gap-3 text-center">
         <a href="" class="p-[14px_20px] rounded-full bg-[#030303] font-semibold text-white w-full">Contact CS</a>
-        <a href="" class="p-[14px_20px] rounded-full bg-[#6635F1] font-semibold text-white w-full">Topup Connect</a>
+        <a href="{{route('dashboard.connect')}}" class="p-[14px_20px] rounded-full bg-[#6635F1] font-semibold text-white w-full">Topup Connect</a>
     </div>
   </div>
 

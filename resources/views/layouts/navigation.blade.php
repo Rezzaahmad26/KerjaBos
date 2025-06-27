@@ -57,6 +57,11 @@
                         {{ __('My Proposals') }}
                     </x-nav-link>
                     @endcan
+                    @role('project_freelancer|project_client')
+                    <x-nav-link :href="route('dashboard.connect')" :active="request()->routeIs('dashboard.connect')">
+                        {{ __('Connect') }}
+                    </x-nav-link>
+                    @endrole
 
                 </div>
             </div>

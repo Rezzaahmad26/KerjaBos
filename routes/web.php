@@ -10,12 +10,16 @@ use App\Http\Controllers\ProjectToolController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WalletTransactionController;
+use App\Http\Controllers\Connect;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/category/{category:slug}', [FrontController::class, 'category'])->name('front.category');
 Route::get('/details/{project:slug}', [FrontController::class, 'details'])->name('front.details');
+
 Route::get('/out_of_connect', [FrontController::class, 'out_of_connect'])->name('front.out_of_connect');
+Route::get('/dashboard/connect', [Connect::class, 'connect'])->name('dashboard.connect');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,82 +33,83 @@ Route::middleware('auth')->group(function () {
     Route::middleware('can:withdraw wallet')->group(function () {
 
         Route::get('/dashboard/wallet', [DashboardController::class, 'wallet'])
-        ->name('dashboard.wallet');
+            ->name('dashboard.wallet');
 
         Route::get('/dashboard/wallet/withdraw', [DashboardController::class, 'wallet_withdrawals'])
-        ->name('dashboard.wallet.withdraw');
+            ->name('dashboard.wallet.withdraw');
 
         Route::post('/dashboard/wallet/withdraw/store', [DashboardController::class, 'withdraw_wallet_store'])
-        ->name('dashboard.wallet.withdraw.store');
+            ->name('dashboard.wallet.withdraw.store');
 
     });
 
     Route::middleware('can:topup wallet')->group(function () {
 
         Route::get('/dashboard/wallet/topup', [DashboardController::class, 'topup_wallet'])
-        ->name('dashboard.wallet.topup');
+            ->name('dashboard.wallet.topup');
 
         Route::post('/dashboard/wallet/topup/store', [DashboardController::class, 'topup_wallet_store'])
-        ->name('dashboard.wallet.topup.store');
+            ->name('dashboard.wallet.topup.store');
     });
 
-    Route::middleware('can:apply job')->group(function() {
+    Route::middleware('can:apply job')->group(function () {
         Route::get('/apply/{project:slug}', [FrontController::class, 'apply_job'])
-        ->name('front.apply_job');
+            ->name('front.apply_job');
 
         Route::post('/apply/{project:slug}/submit', [FrontController::class, 'apply_job_store'])
-        ->name('front.apply_job.store');
+            ->name('front.apply_job.store');
 
         Route::get('/dashboard/proposals', [DashboardController::class, 'proposals'])
-        ->name('dashboard.proposals');
+            ->name('dashboard.proposals');
+
 
         Route::get('/dashboard/proposal_details/{project}/{projectApplicant}', [DashboardController::class, 'proposal_details'])
-        ->name('dashboard.proposal_details');
-        });
+            ->name('dashboard.proposal_details');
+    });
 
-        Route::prefix('admin')->name('admin.')->group(function (){
+    Route::prefix('admin')->name('admin.')->group(function () {
 
-            Route::middleware('can:manage wallets')->group(function() {
-                Route::get('/wallet/topups', [WalletTransactionController::class, 'wallet_topups'])
+        Route::middleware('can:manage wallets')->group(function () {
+            Route::get('/wallet/topups', [WalletTransactionController::class, 'wallet_topups'])
                 ->name('topups');
 
-                Route::get('/wallet/withdrawls', [WalletTransactionController::class, 'wallet_withdrawls'])
+            Route::get('/wallet/withdrawls', [WalletTransactionController::class, 'wallet_withdrawls'])
                 ->name('withdrawls');
 
-                Route::resource('wallet_transactions', WalletTransactionController::class);
-            });
+            Route::resource('wallet_transactions', WalletTransactionController::class);
+        });
 
-            Route::middleware('can:manage applicants')->group(function() {
+        Route::middleware('can:manage applicants')->group(function () {
 
-                Route::resource('project_applicants', ProjectApplicantController::class);
+            Route::resource('project_applicants', ProjectApplicantController::class);
 
-            });
+        });
 
-            Route::middleware('can:manage projects')->group(function() {
-                Route::resource('projects', ProjectController::class);
+        Route::middleware('can:manage projects')->group(function () {
+            Route::resource('projects', ProjectController::class);
 
-                Route::post('/project/{projectApplicant}/completed', [ProjectController::class, 'complete_project_store'])
+            Route::post('/project/{projectApplicant}/completed', [ProjectController::class, 'complete_project_store'])
                 ->name('complete_project.store');
 
-                Route::get('/project/{project}/tools', [ProjectController::class, 'tools'])
+            Route::get('/project/{project}/tools', [ProjectController::class, 'tools'])
                 ->name('projects.tools');
 
-                Route::post('/project/{project}/tools/store', [ProjectController::class, 'tools_store'])
+            Route::post('/project/{project}/tools/store', [ProjectController::class, 'tools_store'])
                 ->name('projects.tools.store');
 
-                Route::resource('project_tools', ProjectToolController::class);
-            });
+            Route::resource('project_tools', ProjectToolController::class);
+        });
 
-            Route::middleware('can:manage categories')->group(function() {
-                Route::resource('categories', CategoryController::class);
-            });
+        Route::middleware('can:manage categories')->group(function () {
+            Route::resource('categories', CategoryController::class);
+        });
 
-            Route::middleware('can:manage tools')->group(function() {
-                Route::resource('tools', ToolController::class);
-            });
+        Route::middleware('can:manage tools')->group(function () {
+            Route::resource('tools', ToolController::class);
+        });
 
     });
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

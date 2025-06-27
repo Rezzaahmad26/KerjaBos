@@ -24,6 +24,8 @@ class RolePermissionSeeder extends Seeder
             'manage project tools',
             'manage wallets',
             'manage applicants',
+            'manage connects',
+            'manage connect topups',
 
             'apply job',
             'topup wallet',
@@ -54,6 +56,8 @@ class RolePermissionSeeder extends Seeder
         $freelancerPermissions = [
             'apply job',
             'withdraw wallet',
+            'topup wallet',
+            'manage connects',
         ];
         $freelancerRole->syncPermissions($freelancerPermissions);
 

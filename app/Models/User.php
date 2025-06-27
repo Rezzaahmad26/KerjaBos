@@ -71,4 +71,11 @@ class User extends Authenticatable
             ->where('freelancer_id', $this->id)
             ->exists(); // tipe data yang dilempar true/false
     }
+
+    public function connect()
+        {
+            return $this->hasOne(ConnectTopup::class)->latestOfMany();
+        }
+    
+
 }
