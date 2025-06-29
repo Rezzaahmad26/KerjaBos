@@ -20,7 +20,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                   @role('super_admin')
+                    @role('super_admin')
                     <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.index')">
                         {{ __('Categories') }}
                     </x-nav-link>
@@ -35,6 +35,10 @@
 
                     <x-nav-link :href="route('admin.tools.index')" :active="request()->routeIs('admin.tools.index')">
                         {{ __('Tools') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('admin.connect.topups')" :active="request()->routeIs('admin.connect.topups')">
+                            {{ __('Connect Topup') }}
                     </x-nav-link>
                     @endrole
 
