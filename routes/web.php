@@ -18,7 +18,7 @@ Route::get('/category/{category:slug}', [FrontController::class, 'category'])->n
 Route::get('/details/{project:slug}', [FrontController::class, 'details'])->name('front.details');
 
 Route::get('/out_of_connect', [FrontController::class, 'out_of_connect'])->name('front.out_of_connect');
-Route::get('/dashboard/connect', [Connect::class, 'connect'])->name('dashboard.connect');
+
 
 
 Route::get('/dashboard', function () {
@@ -29,6 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/dashboard/connect', [Connect::class, 'connect'])->name('dashboard.connect');
+
+    Route::post('/dashboard/connect/topup', [Connect::class, 'store'])
+        ->middleware('can:topup connect')
+        ->name('connect.topup');
 
     Route::middleware('can:withdraw wallet')->group(function () {
 
@@ -106,6 +112,11 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('can:manage tools')->group(function () {
             Route::resource('tools', ToolController::class);
+        });
+
+        Route::middleware('can:manage connect topups')->group(function () {
+            Route::get('/connect/topups', [Connect::class, 'adminTopupIndex'])->name('admin.connect.topups');
+            Route::put('/connect/topups/{id}/approve', [Connect::class, 'approveTopup'])->name('admin.connect.topups.approve');
         });
 
     });

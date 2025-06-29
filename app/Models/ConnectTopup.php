@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConnectTopup extends Model
 {
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $fillable = [
+        'user_id',
+        'connect_amount',
+        'price',
+        'is_paid',
     ];
 
     public function user()

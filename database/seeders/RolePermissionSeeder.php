@@ -30,6 +30,7 @@ class RolePermissionSeeder extends Seeder
             'apply job',
             'topup wallet',
             'withdraw wallet',
+            'topup connect',
         ];
 
         foreach ($permissions as $permission) {
@@ -58,6 +59,8 @@ class RolePermissionSeeder extends Seeder
             'withdraw wallet',
             'topup wallet',
             'manage connects',
+
+            'topup connect',
         ];
         $freelancerRole->syncPermissions($freelancerPermissions);
 
@@ -71,7 +74,7 @@ class RolePermissionSeeder extends Seeder
             'occupation' => 'Owner',
             'connect' => 999,
             'password' => bcrypt('abcd1234'),
-            'avatar' => 'https://placehold.co/150x150/000/fff',
+            'avatar' => '$avatarPath',
         ]);
         $user->assignRole($superAdminRole);
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\ConnectTopup;
+use App\Models\User;
 
 class Connect extends Controller
 {
@@ -35,9 +36,47 @@ class Connect extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'payment_proof' => 'required|file|mimetypes:image/jpeg,image/png,image/jpg|max:2048',// max 2MB dan harus gambar
+        ]);
+
+        $user = auth()->user();
+
+        if (!$user->hasPermissionTo('topup connect')) {
+            abort(403, 'Unauthorized');
+        }
+
+        // Upload bukti transfer
+        $path = $request->file('payment_proof')->store('payment_proofs', 'public');
+
+        ConnectTopup::create([
+            'user_id' => $user->id,
+            'connect_amount' => 10,
+            'price' => 100000,
+            'is_paid' => false, // default: belum diverifikasi
+            'payment_proof' => $path,
+        ]);
+
+        return redirect()->route('dashboard.connect')->with('success', 'Permintaan topup connect berhasil dikirim. Menunggu verifikasi admin.');
     }
 
+
+         public function adminTopupIndex()
+            {
+                $topups = ConnectTopup::with('user')->orderByDesc('created_at')->get();
+                return view('admin.connect_topups.index', compact('topups'));
+            }
+
+        public function approveTopup($id)
+        {
+            $topup = ConnectTopup::findOrFail($id);
+            if (!$topup->is_paid) {
+                $topup->update(['is_paid' => true]);
+                $topup->user->increment('connect', $topup->connect_amount);
+            }
+
+            return redirect()->back()->with('success', 'Topup connect berhasil diverifikasi.');
+        }
     /**
      * Display the specified resource.
      */

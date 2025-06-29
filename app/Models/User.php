@@ -72,10 +72,16 @@ class User extends Authenticatable
             ->exists(); // tipe data yang dilempar true/false
     }
 
-    public function connect()
+    public function latestConnectTopup()
         {
             return $this->hasOne(ConnectTopup::class)->latestOfMany();
         }
-    
+
+    public function connectTopups()
+        {
+            return $this->hasMany(ConnectTopup::class);
+        }
+
+
 
 }
