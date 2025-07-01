@@ -37,7 +37,7 @@ class Connect extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'payment_proof' => 'required|file|mimetypes:image/jpeg,image/png,image/jpg|max:2048',// max 2MB dan harus gambar
+            'payment_proof' => 'required|image|max:2048|mimetypes:image/jpeg,image/png',
         ]);
 
         $user = auth()->user();

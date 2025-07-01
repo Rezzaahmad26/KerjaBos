@@ -1,5 +1,5 @@
 <div class="">
-    <nav class="container max-w-[1130px] mx-auto flex items-center flex-wrap justify-between p-4 rounded-[20px] bg-white mt-[30px] gap-y-3 sm:gap-y-0">
+    <nav class="container max-w-[1130px] mx-auto flex items-center flex-wrap justify-between p-4 rounded-[20px] pt-[30px]  gap-y-3 sm:gap-y-0">
         <a href="{{route('front.index')}}">
             <img src="{{asset('assets/logos/logo.svg')}}" class=""  alt="logo">
         </a>
@@ -25,16 +25,16 @@
             </li>
         </ul>
         @auth
-        <a href="{{route('dashboard')}}">
-            <div class="flex items-center gap-3" >
+        <a href="{{route('dashboard')}}" class="flex items-center gap-3">
+            <div class="flex flex-col items-center " >
                 <p class="font-semibold">Hi, {{Auth::user()->name}}</p>
-                <div class="w-[50px] h-[50px] rounded-full overflow-hidden flex shrink-0">
-                    <img src="{{Storage::url(Auth::user()->avatar)}}" class="w-full h-full object-cover" alt="photo">
+                <div class="text-sm text-[#030303] font-semibold ">
+
+                    {{ Auth::user()->getRoleNames()->first() === 'project_freelancer' ? 'Freelancer' : 'Client' }}
                 </div>
             </div>
-            <div class="text-sm text-[#030303] font-semibold ">
-
-                {{ Auth::user()->getRoleNames()->first() === 'project_freelancer' ? 'Freelancer' : 'Client' }}
+            <div class="w-[50px] h-[50px] rounded-full overflow-hidden flex shrink-0">
+                <img src="{{Storage::url(Auth::user()->avatar)}}" class="w-full h-full object-cover" alt="photo">
             </div>
         </a>
         @endauth

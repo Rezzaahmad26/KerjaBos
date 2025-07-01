@@ -26,10 +26,10 @@
                             <td class="px-4 py-2">{{ $topup->connect_amount }}</td>
                             <td class="px-4 py-2">Rp{{ number_format($topup->price, 0, ',', '.') }}</td>
                             <td class="px-4 py-2">
-                                @if($topup->payment_proof)
-                                    <a href="{{ asset('storage/' . $topup->payment_proof) }}" class="underline text-blue-600" target="_blank">Lihat bukti</a>
+                                @if ($topup->payment_proof)
+                                    <img src="{{ asset('storage/' . $topup->payment_proof) }}" alt="Bukti Transfer" class="w-32 h-auto rounded">
                                 @else
-                                    <span class="text-red-500">Belum tersedia</span>
+                                    <span class="text-sm text-gray-500 italic">Belum diunggah</span>
                                 @endif
                             </td>
                             <td class="px-4 py-2">

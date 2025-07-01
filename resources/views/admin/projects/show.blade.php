@@ -63,7 +63,7 @@
                         <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
                             WAITING FOR APPROVAL
                         </span>
-                    @elseif($applicant->status == 'Rejeced')
+                    @elseif($applicant->status == 'Rejected')
                         <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-red-500 text-white">
                             REJECTED
                         </span>

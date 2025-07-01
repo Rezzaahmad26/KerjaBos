@@ -1,26 +1,26 @@
 @extends('front.layouts.app')
 @section('content')
-<body class="font-poppins text-[#030303] bg-[#F6F5FA] pb-[100px] px-4 sm:px-0">
+<body class="font-poppins bg-[#FFFFFF] pb-[100px] px-4 sm:px-0">
 
     <div class="bg-[#FFFBEE]">
         <x-nav/>
 
-    <section id="header" class="container max-w-[1130px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 mt-[50px]">
-        <h1 class="font-extrabold text-[40px] leading-[45px] text-center sm:text-left">Browse Your <br>Favorites Projects</h1>
-        <div class="flex flex-col sm:flex-row justify-end items-center gap-3 w-full sm:w-auto">
-            <div class="p-2 pl-5 rounded-full bg-white flex items-center justify-between gap-2 w-full sm:w-[500px] focus-within:ring-2 focus-within:ring-[#6635F1] transition-all duration-300">
-                <input type="text" class="appearance-none outline-none focus:outline-none font-semibold placeholder:font-normal placeholder:text-[#545768] w-full" placeholder="Do quick search job by name...">
-                <button class="w-9 h-9 flex shrink-0">
-                    <img src="{{asset('assets/icons/search.svg')}}" class="w-full h-full object-contain" alt="icon">
-                </button>
+        <section id="header" class="container max-w-[1130px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 mt-[50px]">
+            <h1 class="font-extrabold text-[40px] leading-[45px] text-center sm:text-left">Browse Your <br>Favorites Projects</h1>
+            <div class="flex flex-col sm:flex-row justify-end items-center gap-3 w-full sm:w-auto">
+                <div class="p-2 pl-5 rounded-full bg-white border flex items-center justify-between gap-2 w-full sm:w-[500px] focus-within:ring-2 focus-within:ring-[#6635F1] transition-all duration-300">
+                    <input type="text" class="appearance-none outline-none focus:outline-none font-semibold placeholder:font-normal placeholder:text-[#545768] w-full" placeholder="Do quick search job by name...">
+                    <button class="w-9 h-9 flex shrink-0">
+                        <img src="{{asset('assets/icons/search.svg')}}" class="w-full h-full object-contain" alt="icon">
+                    </button>
+                </div>
+                <div class="h-[52px] w-0 border border-[#DCDAE3] hidden sm:block"></div>
+                <button class="p-[14px_20px] bg-white rounded-full font-semibold">Job Filters</button>
             </div>
-            <div class="h-[52px] w-0 border border-[#DCDAE3] hidden sm:block"></div>
-            <button class="p-[14px_20px] bg-white rounded-full font-semibold">Job Filters</button>
-        </div>
-    </section>
+        </section>
     </div>
     <section id="categories" class="container max-w-[1130px] mx-auto flex flex-col gap-4 mt-[50px]">
-    <h2 class="font-bold text-xl">Browse Categories</h2>
+    <h2 class="font-bold text-xl text-[#7C5142]">Browse Categories</h2>
         <div class="grid grid-cols-1 sm:grid-cols-5 gap-5">
 
             @forelse($categories as $category)

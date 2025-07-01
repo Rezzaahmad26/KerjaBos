@@ -10,12 +10,12 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 ">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
 
                 @forelse ( $categories as $category )
-                <div class="item-card flex flex-row justify-between items-center">
+                <div class="item-card flex flex-row justify-between items-center  gap-3">
                     <div class="flex flex-row items-center gap-x-3">
                         <img src="{{Storage::url($category->icon)}}" alt="" class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <div class="flex flex-col">

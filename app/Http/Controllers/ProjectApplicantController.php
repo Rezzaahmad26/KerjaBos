@@ -75,7 +75,7 @@ class ProjectApplicantController extends Controller
             ]);
         });
 
-        return redirect()->route('admin.project.show',
+        return redirect()->route('admin.projects.show',
         [$projectApplicant->project, $projectApplicant->id]);
     }
 
