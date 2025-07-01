@@ -5,41 +5,74 @@
     <div class="bg-[#FFFBEE]">
         <x-nav/>
 
-        <section id="header" class="container max-w-[1130px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 mt-[50px]">
-            <h1 class="font-extrabold text-[40px] leading-[45px] text-center sm:text-left">Browse Your <br>Favorites Projects</h1>
-            <div class="flex flex-col sm:flex-row justify-end items-center gap-3 w-full sm:w-auto">
-                <div class="p-2 pl-5 rounded-full bg-white border flex items-center justify-between gap-2 w-full sm:w-[500px] focus-within:ring-2 focus-within:ring-[#6635F1] transition-all duration-300">
-                    <input type="text" class="appearance-none outline-none focus:outline-none font-semibold placeholder:font-normal placeholder:text-[#545768] w-full" placeholder="Do quick search job by name...">
-                    <button class="w-9 h-9 flex shrink-0">
-                        <img src="{{asset('assets/icons/search.svg')}}" class="w-full h-full object-contain" alt="icon">
-                    </button>
-                </div>
-                <div class="h-[52px] w-0 border border-[#DCDAE3] hidden sm:block"></div>
-                <button class="p-[14px_20px] bg-white rounded-full font-semibold">Job Filters</button>
+        <div class="container  mx-auto flex flex-col items-center justify-center gap-5 py-[57px]">
+            <h1 class="text-[#7C5142] text-[40px] font-bold">Welcome to KerjaBos</h1>
+            <h3 class="text-[#7C5142] text-[16px] font-medium pb-[30px]">Connecting Clients with Top Freelancers — Fast, Easy, and Secure.</h3>
+            <div class="bg-[#FF611A] text-white p-[16px_45px] rounded-[20px] font-semibold text-center w-fit">
+                <p>Explore</p>
             </div>
-        </section>
-    </div>
-    <section id="categories" class="container max-w-[1130px] mx-auto flex flex-col gap-4 mt-[50px]">
-    <h2 class="font-bold text-xl text-[#7C5142]">Browse Categories</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-5 gap-5">
 
-            @forelse($categories as $category)
-                <a href="{{route('front.category', $category->slug)}}" class="card">
-                    <div class="p-5 rounded-[20px] bg-white flex flex-col gap-[30px] hover:ring-2 hover:ring-[#6635F1] transition-all duration-300">
-                        <div class="w-[70px] h-[70px] flex shrink-0">
-                            <img src="{{Storage::url($category->icon)}}" alt="icon">
-                        </div>
-                        <div class="flex flex-col gap-[6px]">
-                            <p href="" class="font-semibold text-lg">{{ $category->name }}</p>
-                            <p class="text-sm text-[#545768]">{{ $category->projects()->count()}} jobs available</p>
-                        </div>
-                    </div>
-                </a>
-            @empty
-                <p>Belum ada kategori terbaru</p>
-            @endforelse
-
+            <img src="{{asset('assets/photos/image-hero.svg')}}" class="w-full h-auto object-cover pt-[86px]" alt="hero">
         </div>
+
+    </div>
+
+    <div class="flex gap-[30px] items-center justify-center flex-wrap mt-10 text-[16px] text-[#1E1E1E] pt-[22px] px-[72px] ">
+        <div class="flex items-start gap-[30px]  border-r border-[#E0E0E0] py-[4px]">
+            <img src="{{ asset('assets/icons/Checklist.svg') }}" class="w-[41px] h-[41px] object-cover " alt="icon">
+            <p class="pr-[36px]">Talented freelancers <br> across various fields</p>
+        </div>
+        <div class="flex items-start gap-[30px] border-r border-[#E0E0E0]">
+            <img src="{{ asset('assets/icons/Checklist.svg') }}" class="w-[41px] h-[41px] object-cover" alt="icon">
+            <p class="pr-[36px]">Simple, transparent <br> hiring process</p>
+        </div>
+        <div class="flex items-start gap-[30px] border-r border-[#E0E0E0]">
+            <img src="{{ asset('assets/icons/Checklist.svg') }}" class="w-[41px] h-[41px] object-cover" alt="icon">
+            <p class="pr-[36px]">Safe and secure <br> payments</p>
+        </div>
+        <div class="flex items-start gap-3">
+            <img src="{{ asset('assets/icons/Checklist.svg') }}" class="w-[41px] h-[41px] object-cover" alt="icon">
+            <p>From design to writing, coding to <br> translation — it's all here!</p>
+        </div>
+    </div>
+
+
+
+    <section id="header" class="container max-w-[1130px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 mt-[50px]">
+        <h1 class="font-extrabold text-[40px] text-[#7C5142] leading-[45px] text-center sm:text-left mt-[50px]">Browse Your <br>Favorites Projects</h1>
+        <div class="flex flex-col sm:flex-row justify-end items-center gap-3 w-full sm:w-auto mt-[50px]">
+            <div class="p-2 pl-5 rounded-full bg-white border flex items-center justify-between gap-2 w-full sm:w-[500px] focus-within:ring-2 focus-within:ring-[#6635F1] transition-all duration-300">
+                <button class="w-9 h-9 flex shrink-0 items-center justify-center">
+                    <img src="{{asset('assets/icons/search.svg')}}" class="w-6 h-6 object-contain" alt="icon">
+                </button>
+                <input type="text" class="appearance-none outline-none focus:outline-none font-semibold placeholder:font-normal placeholder:text-[#545768] w-full" placeholder="search job by name...">
+                <p class="bg-[#FF611A] text-white py-[10px] px-[31px] rounded-[20px]">Search</p>
+            </div>
+            <div class="h-[52px] w-0 border border-[#DCDAE3] hidden sm:block"></div>
+            <button class="p-[14px_20px] bg-white rounded-full font-semibold">Job Filters</button>
+        </div>
+    </section>
+    <section id="categories" class="container max-w-[1130px] mx-auto flex flex-col gap-4 mt-[50px]">
+        <h2 class="font-bold text-xl text-[#7C5142] mt-[50px]">Browse Categories</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-5 p-1 ">
+
+                @forelse($categories as $category)
+                    <a href="{{route('front.category', $category->slug)}}" class="card group ">
+                        <div class="w-[224px] h-full p-5 rounded-[20px] flex flex-col border gap-[30px] bg-white transition-all duration-300 group-hover:bg-[#FF611A] shadow-md group-hover:shadow-lg">
+                            <div class="w-[70px] h-[70px] flex shrink-0">
+                                <img src="{{Storage::url($category->icon)}}" alt="icon" class="transition-all duration-300 ">
+                            </div>
+                            <div class="flex flex-col gap-[6px]">
+                                <p href="" class="font-semibold text-sm transition-all duration-300 group-hover:text-white">{{ $category->name }}</p>
+                                <p class="text-sm text-[#545768] transition-all duration-300 group-hover:text-white">{{ $category->projects()->count()}} jobs available</p>
+                            </div>
+                        </div>
+                    </a>
+                @empty
+                    <p>Belum ada kategori terbaru</p>
+                @endforelse
+
+            </div>
     </section>
     <section id="featured" class="container max-w-[1130px] mx-auto flex flex-col gap-4 mt-[50px]">
     <h2 class="font-bold text-xl">Featured Projects</h2>
@@ -47,7 +80,7 @@
 
             @forelse($projects as $project)
                 <a href="{{route('front.details', $project)}}" class="card">
-                    <div class="p-5 rounded-[20px] bg-white flex flex-col gap-5 hover:ring-2 hover:ring-[#6635F1] transition-all duration-300">
+                    <div class="p-5 rounded-[20px] border shadow-md bg-white flex flex-col gap-5 hover:ring-2 hover:ring-[#FF611A] transition-all duration-300">
                         <div class="w-full h-[140px] rounded-[20px] overflow-hidden relative">
                             @if($project->has_finished)
                                 <div class="font-bold text-xs leading-[18px] text-white bg-[#F3445C] p-[2px_10px] rounded-full w-fit absolute top-[10px] left-[10px]">
@@ -98,7 +131,7 @@
         <div class="flex flex-col gap-5">
 
              @forelse($projects as $project)
-                <div class="card hover:ring-2 hover:ring-[#6635F1] transition-all duration-300 bg-white p-5 rounded-[20px] flex flex-col sm:flex-row sm:items-center gap-[18px] w-full">
+                <div class="card border shadow-md hover:ring-2 hover:ring-[#FF611A] transition-all duration-300 bg-white p-5 rounded-[20px] flex flex-col sm:flex-row sm:items-center gap-[18px] w-full">
                     <a href="{{route('front.details', $project)}}" class="w-full sm:w-[200px] h-[150px] flex shrink-0 rounded-[20px] overflow-hidden bg-[#D9D9D9]">
                         <img src="{{Storage::url($project->thumbnail)}}" class="w-full h-full object-cover" alt="thumbnail">
                     </a>

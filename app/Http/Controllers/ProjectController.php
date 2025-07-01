@@ -36,12 +36,12 @@ class ProjectController extends Controller
             $projectsQuery->whereHas('owner', function ($query) use ($user) {
                 $query->where('client_id', $user->id);
             });
-    }
+            }
         $projects = $projectsQuery->paginate(10);
 
         return view('admin.projects.index', compact('projects'));
 
-}
+    } // fungsi untuk menampilkan data project yang telah dibuat oleh user
 
     /**
      * Show the form for creating a new resource.
@@ -97,7 +97,7 @@ class ProjectController extends Controller
 
         });
         return redirect()->route('admin.projects.index');
-    }
+    } // fungsi untuk menyimpan data project baru
 
     /**
      * Display the specified resource.
@@ -106,7 +106,7 @@ class ProjectController extends Controller
     {
         //
         return view('admin.projects.show', compact('project'));
-    }
+    } // fungsi untuk menampilkan detail project
 
     public function tools(Project $project)
     {
@@ -117,7 +117,7 @@ class ProjectController extends Controller
         $tools = Tool::all();
         // Menampilkan halaman tools untuk project tertentu
         return view('admin.projects.tools', compact('project', 'tools'));
-    }
+    } // fungsi untuk menampilkan halaman tools pada project tertentu
 
     public function tools_store(StoreToolProjectRequest $request, Project $project) {
 
@@ -130,7 +130,7 @@ class ProjectController extends Controller
         });
 
         return redirect()->route('admin.projects.tools', $project->id);
-    }
+    } // fungsi untuk menyimpan data tools pada project tertentu
 
     public function complete_project_store(ProjectApplicant $projectApplicant)
     {
@@ -154,7 +154,7 @@ class ProjectController extends Controller
 
         return redirect()->route('admin.projects.show', [$projectApplicant->project, $projectApplicant->id]);
 
-    }
+    } // fungsi untuk menyimpan data project yang telah selesai
     /**
      * Show the form for editing the specified resource.
      */

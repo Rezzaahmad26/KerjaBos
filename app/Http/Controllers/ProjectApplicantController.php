@@ -43,7 +43,7 @@ class ProjectApplicantController extends Controller
         }
 
         return view('admin.projects.applicant_details', compact('projectApplicant'));
-    }
+    } // fungsi untuk menampilkan detail dari project applicant
 
     /**
      * Show the form for editing the specified resource.
@@ -77,7 +77,7 @@ class ProjectApplicantController extends Controller
 
         return redirect()->route('admin.projects.show',
         [$projectApplicant->project, $projectApplicant->id]);
-    }
+    } // fungsi untuk mengupdate status dari project applicant
 
     /**
      * Remove the specified resource from storage.

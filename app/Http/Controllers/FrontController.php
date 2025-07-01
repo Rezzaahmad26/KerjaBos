@@ -51,7 +51,7 @@ class FrontController extends Controller
         }
 
         return view('front.apply', compact('project'));
-    }
+    } // function untuk menampilkan halaman apply job pada project tertentu
 
     public function apply_job_store(StoreApplicantRequest $request, Project $project){
         $user = Auth::user();
@@ -79,5 +79,5 @@ class FrontController extends Controller
 
         return redirect()->route('front.details', $project->slug);
 
-    }
+    } // function untuk menyimpan data project applicant pada saat apply job
 }

@@ -70,7 +70,7 @@ class DashboardController extends Controller
         });
 
         return redirect()->route('dashboard.wallet');
-    }
+    } // function untuk menyimpan data withdraw wallet baru
 
     public function topup_wallet() {
         //function untuk menampilkan halaman topup wallet
@@ -96,5 +96,5 @@ class DashboardController extends Controller
         });
 
         return redirect()->route('dashboard.wallet');
-    }
+    } // function untuk menyimpan data topup wallet baru
 }

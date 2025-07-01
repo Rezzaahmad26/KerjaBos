@@ -21,13 +21,13 @@ class WalletTransactionController extends Controller
         $topup_transactions = WalletTransaction::where('type', 'Topup')->orderByDesc('id')->paginate(10);
 
         return view('admin.wallet_transactions.topups', compact('topup_transactions'));
-    }
+    } // function untuk menampilkan data topup pada wallet
 
     public function wallet_withdrawls() {
         $withdrawals_transactions = WalletTransaction::where('type', 'Withdraw')->orderByDesc('id')->paginate(10);
 
         return view('admin.wallet_transactions.withdrawals', compact('withdrawals_transactions'));
-    }
+    } // function untuk menampilkan data withdraw pada wallet
 
     /**
      * Show the form for creating a new resource.
@@ -52,7 +52,7 @@ class WalletTransactionController extends Controller
     {
         //
         return view('admin.wallet_transactions.details', compact('walletTransaction'));
-    }
+    } // function untuk menampilkan detail dari wallet transaction
 
     /**
      * Show the form for editing the specified resource.
@@ -96,7 +96,7 @@ class WalletTransactionController extends Controller
         else {
             return redirect()->route('admin.topups');
         }
-    }
+    } // function untuk mengupdate status dari wallet transaction, apakah sudah dibayar atau belum
 
     /**
      * Remove the specified resource from storage.

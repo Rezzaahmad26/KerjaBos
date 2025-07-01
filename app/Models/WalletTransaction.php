@@ -18,7 +18,7 @@ class WalletTransaction extends Model
         'bank_name',
         'bank_account_name',
         'bank_account_number',
-    ];
+    ]; // fillable untuk menentukan field yang bisa diisi pada saat create atau update data
 
     public function user() {
         return $this->belongsTo(User::class);
