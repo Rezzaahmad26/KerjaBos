@@ -85,7 +85,7 @@ class WalletTransactionController extends Controller
                 $walletTransaction->update([
                     'is_paid' => true,
                 ]);
-
+                  // Tambahkan saldo ke wallet user
                 $user_to_be_approved->wallet->increment('balance', $walletTransaction->amount);
             }
         });
