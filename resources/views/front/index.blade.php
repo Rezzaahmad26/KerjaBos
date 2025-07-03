@@ -41,7 +41,7 @@
     <section id="header" class="container max-w-[1130px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 mt-[50px]">
         <h1 class="font-extrabold text-[40px] text-[#7C5142] leading-[45px] text-center sm:text-left mt-[50px]">Browse Your <br>Favorites Projects</h1>
         <div class="flex flex-col sm:flex-row justify-end items-center gap-3 w-full sm:w-auto mt-[50px]">
-            <div class="p-2 pl-5 rounded-full bg-white border flex items-center justify-between gap-2 w-full sm:w-[500px] focus-within:ring-2 focus-within:ring-[#6635F1] transition-all duration-300">
+            <div class="p-2 pl-5 rounded-full bg-white border flex items-center justify-between gap-2 w-full sm:w-[500px] focus-within:ring-2 focus-within:ring-[#FF611A] transition-all duration-300">
                 <button class="w-9 h-9 flex shrink-0 items-center justify-center">
                     <img src="{{asset('assets/icons/search.svg')}}" class="w-6 h-6 object-contain" alt="icon">
                 </button>
@@ -81,7 +81,7 @@
 
             @forelse($projects->take(3) as $project)
                 <a href="{{route('front.details', $project)}}" class="card w-[276px] h-[322px]">
-                    <div class="p-5 rounded-[20px] border shadow-md bg-white flex flex-col gap-5 hover:ring-2 hover:ring-[#FF611A] transition-all duration-300">
+                    <div class="p-5 rounded-[20px] border shadow-md bg-white flex flex-col gap-5 hover:ring-2 hover:ring-[#FF611A] hover:shadow transition-all duration-300">
                         <div class="w-full h-[140px] rounded-[20px] overflow-hidden relative">
                             @if($project->has_finished)
                                 <div class="font-bold text-xs leading-[18px] text-white bg-[#F3445C] p-[2px_10px] rounded-full w-fit absolute top-[10px] left-[10px]">
@@ -123,12 +123,12 @@
                 <p>Belum ada data project terbaru</p>
             @endforelse
 
-            <div class="flex flex-col sm:w-[300px] w-[276px] border-2 h-full shrink-0 bg-white rounded-[20px] p-5 gap-[30px] ">
+           <div class="flex flex-col sm:w-[300px] w-[276px] h-full shrink-0 bg-white rounded-[20px] p-5 gap-[20px] border shadow-lg">
                 @auth
-                    <div class="flex flex-col gap-3">
-                        <h3 class="font-semibold">Your Profile</h3>
+                    <div class="flex flex-col gap-4">
+                        <h3 class="font-semibold text-lg">Your Profile</h3>
                         <div class="flex items-center gap-3">
-                            <div class="w-[50px] h-[50px] rounded-full overflow-hidden flex shrink-0">
+                            <div class="w-[50px] h-[50px] rounded-full overflow-hidden flex shrink-0 border border-gray-300">
                                 <img src="{{Storage::url(Auth::user()->avatar)}}" class="w-full h-full object-cover" alt="photo">
                             </div>
                             <div class="flex flex-col gap-[2px]">
@@ -136,40 +136,35 @@
                                 <p class="text-sm leading-[21px] text-[#545768]">911 Finished Projects</p>
                             </div>
                         </div>
+
                         <div class="flex items-center gap-[6px]">
                             <div class="flex items-center">
-                                <div>
-                                    <img src="assets/icons/Star.svg" alt="star">
-                                </div>
-                                <div>
-                                    <img src="assets/icons/Star.svg" alt="star">
-                                </div>
-                                <div>
-                                    <img src="assets/icons/Star.svg" alt="star">
-                                </div>
-                                <div>
-                                    <img src="assets/icons/Star.svg" alt="star">
-                                </div>
-                                <div>
-                                    <img src="assets/icons/Star-grey.svg" alt="star">
-                                </div>
-                                <p class="font-semibold text-sm">(893)</p>
+                                <img src="assets/icons/Star.svg" alt="star">
+                                <img src="assets/icons/Star.svg" alt="star">
+                                <img src="assets/icons/Star.svg" alt="star">
+                                <img src="assets/icons/Star.svg" alt="star">
+                                <img src="assets/icons/Star-grey.svg" alt="star">
+                                <p class="font-semibold text-sm ml-2">(893)</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-[10px] rounded-[20px] p-[10px_14px] bg-[#030303]">
-                        <div class="flex items-center gap-3">
+                    <div class="flex flex-col gap-3 rounded-[16px] mt-4 p-4 bg-gradient-to-r from-[#FF611A] to-[#FF9C1A] shadow-xl">
+                        <div class="flex items-center gap-3 ">
                             <div class="w-8 h-8 flex shrink-0">
-                                <img src="assets/icons/story.svg" alt="">
+                                <img src="{{asset('assets/icons/story.svg')}}" alt="Story icon depicting a document or narrative element">
                             </div>
-                            <p class="text-sm text-white">You have <span class="font-bold">{{Auth::user()->connect}}</span> connects available to get a new job</p>
+                            <p class="text-sm text-white">
+                                You have <span class="font-bold">{{Auth::user()->connect}}</span> connects available to get a new job
+                            </p>
                         </div>
                         <a href="{{route('front.out_of_connect')}}" class="font-semibold text-white text-sm hover:underline text-center">Top Up Connect</a>
                     </div>
-                    <hr>
+
+                    <hr class="border-t border-gray-200">
                 @endauth
             </div>
+
         </div>
     </section>
 

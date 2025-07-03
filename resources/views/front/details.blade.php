@@ -111,12 +111,12 @@
 
             @auth
                 @if(Auth::user()->hasAppliedToProject($project->id))
-                <a href="{{route('dashboard.proposals')}}" class="bg-[#6635F1] p-[14px_20px] rounded-full font-semibold text-white text-center">
+                <a href="{{route('dashboard.proposals')}}" class="bg-[#FF611A] p-[14px_20px] rounded-full font-semibold text-white text-center">
                     View Proposal
                 </a>
                 @else
                     @if(!$project->has_finished)
-                        <a href="{{route('front.apply_job', $project->slug)}}" class="bg-[#6635F1] p-[14px_20px] rounded-full font-semibold text-white text-center">
+                        <a href="{{route('front.apply_job', $project->slug)}}" class="bg-[#FF611A] p-[14px_20px] rounded-full font-semibold text-white text-center">
                             Apply Now
                         </a>
                     @endif
@@ -125,7 +125,7 @@
 
             @guest
                 @if(!$project->has_started)
-                <a href="{{route('front.apply_job', $project->slug)}}" class="bg-[#6635F1] p-[14px_20px] rounded-full font-semibold text-white text-center">
+                <a href="{{route('front.apply_job', $project->slug)}}" class="bg-[#FF611A] p-[14px_20px] rounded-full font-semibold text-white text-center">
                                 Apply Now
                 </a>
                 @endif
@@ -180,7 +180,7 @@
 
         @forelse($projects as $project)
             <a href="{{route('front.details', $project)}}" class="card">
-                <div class="p-5 rounded-[20px] bg-white flex flex-col gap-5 hover:ring-2 hover:ring-[#6635F1] transition-all duration-300">
+                <div class="p-5 rounded-[20px] bg-white flex flex-col gap-5 hover:ring-2 hover:ring-[#FF611A] transition-all duration-300">
                     <div class="w-full h-[140px] rounded-[20px] overflow-hidden relative">
                         @if($project->has_finished)
                             <div class="font-bold text-xs leading-[18px] text-white bg-[#F3445C] p-[2px_10px] rounded-full w-fit absolute top-[10px] left-[10px]">
