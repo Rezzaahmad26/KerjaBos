@@ -239,6 +239,25 @@
 
     </section>
   </section>
+
+ <footer class="flex flex-col items-center mt-[70px]">
+    <div class="flex items-center justify-center gap-[40px]">
+        <img src="{{ asset('assets/logos/logo.svg') }}" class="w-[154px] h-[50px] object-cover" alt="KerjaBos Logo">
+
+        <div class="border-r-2 border-[#FF611A] h-6 mx-5"></div>
+
+        <ul class="flex items-center gap-[40px] text-[20px]">
+            <li><a href="#" class="text-[#FF611A] font-semibold">Browse</a></li>
+            <li><a href="#" class="text-gray-800 hover:text-[#FF611A]">Category</a></li>
+            <li><a href="#" class="text-gray-800 hover:text-[#FF611A]">My Jobs</a></li>
+            <li><a href="#" class="text-gray-800 hover:text-[#FF611A]">Help</a></li>
+        </ul>
+    </div>
+
+    <p class="text-[20px] text-gray-700 mt-[36px] mb-4">&copy; 2025 United UI. All rights reserved.</p>
+</footer>
+
+
 </body>
 @endsection
 

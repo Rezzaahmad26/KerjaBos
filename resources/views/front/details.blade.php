@@ -13,7 +13,7 @@
         <span>/</span>
         <a href="" class="last-of-type:font-semibold active:font-semibold transition-all duration-300">Details</a>
     </div>
-    <div>anggit</div>
+    
   </section>
   <section id="details" class="container max-w-[1130px] mx-auto flex flex-col sm:flex-row sm:flex-nowrap gap-5 mt-[30px]">
     <div class="bg-white flex flex-col gap-5 p-5 rounded-[20px]">

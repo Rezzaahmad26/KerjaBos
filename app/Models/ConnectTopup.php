@@ -11,6 +11,7 @@ class ConnectTopup extends Model
         'connect_amount',
         'price',
         'is_paid',
+        'payment_proof',
     ];
 
     public function user()

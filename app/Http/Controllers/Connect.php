@@ -36,8 +36,9 @@ class Connect extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'payment_proof' => 'required|image|max:2048|mimetypes:image/jpeg,image/png',
+            'payment_proof' => 'required|image|max:2048|mimetypes:image/jpeg,image/png,image/gif,image/webp',
         ]);
 
         $user = auth()->user();
@@ -49,6 +50,7 @@ class Connect extends Controller
         // Upload bukti transfer
         $path = $request->file('payment_proof')->store('payment_proofs', 'public');
 
+
         ConnectTopup::create([
             'user_id' => $user->id,
             'connect_amount' => 10,
@@ -56,6 +58,7 @@ class Connect extends Controller
             'is_paid' => false, // default: belum diverifikasi
             'payment_proof' => $path,
         ]);
+
 
         return redirect()->route('dashboard.connect')->with('success', 'Permintaan topup connect berhasil dikirim. Menunggu verifikasi admin.');
     }

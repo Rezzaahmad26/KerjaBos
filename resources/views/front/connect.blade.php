@@ -27,47 +27,54 @@
                             </div>
                     </div>
                     <div class="flex flex-row gap-x-5">
+                    @can('topup connect')
+                        @php
+                            $pendingTopup = Auth::user()->connectTopups()->where('is_paid', false)->latest()->first();
+                        @endphp
 
-                        @can('topup connect')
-                           @if(Auth::user()->connect == 0 && Auth::user()->connectTopups()->where('is_paid', false)->count() == 0)
+                        {{-- Jika ada topup yang pending --}}
+                        @if($pendingTopup)
+                            <div class="p-4 mb-4 bg-yellow-100 text-yellow-800 rounded-lg text-sm font-semibold">
+                                Admin sedang memvalidasi permintaan top-up Anda. Mohon tunggu konfirmasi.
+                            </div>
 
+                        {{-- Jika connect 0 dan tidak ada topup --}}
+                        @elseif(Auth::user()->connect == 0)
 
-                                @if(session('success'))
-                                        <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
-                                            {{ session('success') }}
-                                        </div>
-                                @endif
-
-                                @if(session('error'))
-                                        <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
-                                            {{ session('error') }}
-                                        </div>
-                                @endif
-                                <form method="POST" action="{{ route('connect.topup') }}" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="flex flex-col gap-y-2">
-                                        <label class="text-sm text-slate-600 font-semibold">Upload Bukti Transfer (Transfer ke: 1234567890 - BCA)</label>
-                                        <input type="file" name="payment_proof" required class="block w-full text-sm text-gray-500
-                                            file:mr-4 file:py-2 file:px-4
-                                            file:rounded-full file:border-0
-                                            file:text-sm file:font-semibold
-                                            file:bg-blue-50 file:text-blue-700
-                                            hover:file:bg-blue-100" />
-                                            @error('payment_proof')
-                                                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                                            @enderror
-                                        <button type="submit" class="mt-3 font-bold py-2 px-4 bg-blue-600 text-white rounded-full">
-                                            Ajukan Top-Up 10 Connect (Rp100.000)
-                                        </button>
-                                    </div>
-                                </form>
-
+                            @if(session('success'))
+                                <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
+                                    {{ session('success') }}
+                                </div>
                             @endif
 
-                        @endcan
+                            @if(session('error'))
+                                <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
 
+                            <form method="POST" action="{{ route('connect.topup') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="flex flex-col gap-y-2">
+                                    <label class="text-sm text-slate-600 font-semibold">Upload Bukti Transfer (Transfer ke: 1234567890 - BCA)</label>
+                                    <input type="file" name="payment_proof" required class="block w-full text-sm text-gray-500
+                                        file:mr-4 file:py-2 file:px-4
+                                        file:rounded-full file:border-0
+                                        file:text-sm file:font-semibold
+                                        file:bg-blue-50 file:text-blue-700
+                                        hover:file:bg-blue-100" />
+                                    @error('payment_proof')
+                                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                                    @enderror
+                                    <button type="submit" class="mt-3 font-bold py-2 px-4 bg-blue-600 text-white rounded-full">
+                                        Ajukan Top-Up 10 Connect (Rp100.000)
+                                    </button>
+                                </div>
+                            </form>
 
-                    </div>
+                        @endif
+                    @endcan
+                </div>
                 </div>
 
 

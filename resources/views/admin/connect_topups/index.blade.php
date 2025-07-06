@@ -27,7 +27,9 @@
                             <td class="px-4 py-2">Rp{{ number_format($topup->price, 0, ',', '.') }}</td>
                             <td class="px-4 py-2">
                                 @if ($topup->payment_proof)
-                                    <img src="{{ asset('storage/' . $topup->payment_proof) }}" alt="Bukti Transfer" class="w-32 h-auto rounded">
+
+                                        <img src="{{Storage::url($topup->payment_proof)}}" alt="Bukti Transfer" class="w-[50px] h-auto rounded"
+                                         onclick="openModal('{{ Storage::url($topup->payment_proof) }}')">
                                 @else
                                     <span class="text-sm text-gray-500 italic">Belum diunggah</span>
                                 @endif
@@ -52,4 +54,31 @@
             </table>
         </div>
     </div>
+
+    {{-- Modal Pop-up --}}
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50">
+        <div class="bg-white p-4 rounded-lg max-w-2xl max-h-[90vh] overflow-auto text-center">
+            <img id="modalImage" src="" alt="Bukti Transfer Besar" class="max-w-full max-h-[80vh] rounded shadow">
+            <button onclick="closeModal()" class="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Tutup</button>
+        </div>
+    </div>
+
+     <script>
+        function openModal(imageSrc) {
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('imageModal');
+            const modalContent = document.getElementById('modalImage');
+            if (!modalContent.contains(e.target) && modal.contains(e.target)) {
+                closeModal();
+            }
+        });
+    </script>
 </x-app-layout>
